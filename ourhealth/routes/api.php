@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\CountriesController;
+use App\Http\Controllers\HospitalDepartmentsController;
 use App\Http\Controllers\HospitalsController;
 use App\Http\Controllers\RegionsController;
+use App\Models\HospitalDepartment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -28,3 +30,8 @@ Route::get('/hospitals', [HospitalsController::class, 'index']);
 Route::post('/hospitals', [HospitalsController::class, 'store']);
 Route::patch('/hospitals/{id}', [HospitalsController::class, 'update']);
 Route::delete('/hospitals/{id}', [HospitalsController::class, 'destroy']);
+
+Route::get('/hospitals/{hospitalId}/departments', [HospitalDepartmentsController::class, 'index']);
+Route::post('/hospitals/{hospitalId}/departments', [HospitalDepartmentsController::class, 'store']);
+Route::patch('/hospitals/{hospitalId}/departments/{id}', [HospitalDepartmentsController::class, 'update']);
+Route::delete('/hospitals/{hospitalId}/departments/{id}', [HospitalDepartmentsController::class, 'destroy']);
