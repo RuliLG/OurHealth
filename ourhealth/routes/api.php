@@ -20,4 +20,5 @@ Route::get('/countries', [CountriesController::class, 'index']);
 Route::get('/countries/{isoCode}', [CountriesController::class, 'get']);
 Route::get('/countries/{isoCode}/regions', [RegionsController::class, 'countryIndex']);
 
+Route::get('/regions', [RegionsController::class, 'index']);
 Route::get('/regions/{id}', [RegionsController::class, 'get']);
