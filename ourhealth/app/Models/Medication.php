@@ -16,16 +16,16 @@ class Medication extends Model
 
     public function allergies()
     {
-        return $this->hasMany(MedicationAllergy::class);
+        return $this->hasManyThrough(Allergy::class, MedicationAllergy::class);
     }
 
     public function conditions()
     {
-        return $this->hasMany(MedicationCondition::class);
+        return $this->hasManyThrough(Condition::class, MedicationCondition::class);
     }
 
     public function incompatibilities()
     {
-        return $this->hasMany(MedicationIncompatibility::class);
+        return $this->hasManyThrough(Medication::class, MedicationCondition::class);
     }
 }
