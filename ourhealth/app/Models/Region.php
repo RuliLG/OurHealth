@@ -13,4 +13,9 @@ class Region extends Model
     {
         return $this->belongsTo(Country::class, 'iso_code', 'country_iso_code');
     }
+
+    public function hospitals()
+    {
+        return $this->hasMany(Hospital::class);
+    }
 }
