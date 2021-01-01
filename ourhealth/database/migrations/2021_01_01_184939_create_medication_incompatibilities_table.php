@@ -20,7 +20,7 @@ class CreateMedicationIncompatibilitiesTable extends Migration
             $table->mediumText('comments')->nullable();
             $table->timestamps();
 
-            $table->unique(['medication_id', 'incompatible_with']);
+            $table->unique(['medication_id', 'incompatible_with'], 'incompatibility');
         });
     }
 

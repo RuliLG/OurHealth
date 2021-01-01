@@ -20,7 +20,7 @@ class CreateMedicationAllergiesTable extends Migration
             $table->mediumText('comments')->nullable();
             $table->timestamps();
 
-            $table->unique(['allergy_id', 'condition_id']);
+            $table->unique(['medication_id', 'allergy_id']);
         });
     }
 

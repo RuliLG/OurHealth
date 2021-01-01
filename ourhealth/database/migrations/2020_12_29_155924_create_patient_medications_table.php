@@ -17,6 +17,12 @@ class CreatePatientMedicationsTable extends Migration
             $table->id();
             $table->foreignId('patient_id')->constrained()->cascadeOnDelete();
             $table->foreignId('medication_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('visit_diagnosis_id')->nullable()->constrained()->cascadeOnDelete();
+            $table->date('start_date');
+            $table->date('end_date')->nullable();
+            $table->enum('frequency_type', ['hourly', 'daily', 'weekly', 'monthly', 'yearly']);
+            $table->unsignedInteger('frequency');
+            $table->string('amount', 512)->nullable();
             $table->timestamps();
         });
     }
