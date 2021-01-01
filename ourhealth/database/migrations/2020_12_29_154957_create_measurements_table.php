@@ -21,7 +21,7 @@ class CreateMeasurementsTable extends Migration
             $table->string('other_type', 40)->nullable();
             $table->string('name');
             $table->string('value');
-            $table->integer('batch_id');
+            $table->integer('batch_id')->index();
             $table->timestamps();
         });
     }
