@@ -9,6 +9,10 @@ class PatientMedication extends Model
 {
     use HasFactory;
 
+    protected $appends = [
+        'is_active',
+    ];
+
     public function getIsActiveAttribute()
     {
         return $this->end_date ? now()->isAfter($this->end_date) : true;
