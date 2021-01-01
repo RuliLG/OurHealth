@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CountriesController;
+use App\Http\Controllers\HospitalsController;
 use App\Http\Controllers\RegionsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -22,3 +23,8 @@ Route::get('/countries/{isoCode}/regions', [RegionsController::class, 'countryIn
 
 Route::get('/regions', [RegionsController::class, 'index']);
 Route::get('/regions/{id}', [RegionsController::class, 'get']);
+
+Route::get('/hospitals', [HospitalsController::class, 'index']);
+Route::post('/hospitals', [HospitalsController::class, 'store']);
+Route::patch('/hospitals/{id}', [HospitalsController::class, 'update']);
+Route::delete('/hospitals/{id}', [HospitalsController::class, 'destroy']);
