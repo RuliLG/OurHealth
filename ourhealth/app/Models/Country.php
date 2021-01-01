@@ -10,6 +10,9 @@ class Country extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name', 'iso_code',
+    ];
     protected $appends = [
         'flag_icon_url',
     ];
