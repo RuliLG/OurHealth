@@ -25,6 +25,6 @@ class CountriesController extends Controller
      */
     public function get($isoCode)
     {
-        return response()->json($this->countryService->get($isoCode));
+        return response()->json($this->countryService->get($isoCode, true));
     }
 }
