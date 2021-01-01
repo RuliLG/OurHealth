@@ -20,7 +20,7 @@ class CreatePatientsTable extends Migration
             $table->string('last_name', 60)->nullable();
             $table->string('id_card', 120);
             $table->string('nationality', 4)->nullable();
-            $table->string('original_region', 4)->nullable();
+            $table->foreignId('region_id')->nullable()->constrained()->nullOnDelete();
             $table->string('photo_s3_key')->nullable();
             $table->foreignId('preferred_hospital_id')->nullable()->constrained('hospitals')->nullOnDelete();
             $table->date('date_of_birth')->nullable();
@@ -35,7 +35,6 @@ class CreatePatientsTable extends Migration
 
             $table->unique(['id_card', 'nationality']);
             $table->foreign('nationality')->references('iso_code')->on('countries')->nullOnDelete();
-            $table->foreign('original_region')->references('iso_code')->on('countries')->nullOnDelete();
         });
     }
 
