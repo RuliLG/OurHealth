@@ -63,7 +63,7 @@ class PopulateCountries extends Command
 
         if (!empty($data)) {
             Country::insert($data);
-            echo 'Created ' . count($data) . (count($data) === 1 ? ' countries' : ' country') . PHP_EOL;
+            echo 'Created ' . count($data) . (count($data) === 1 ? ' country' : ' countries') . PHP_EOL;
         }
 
         return 0;
