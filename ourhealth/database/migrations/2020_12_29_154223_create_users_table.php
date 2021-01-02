@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('last_name')->nullable();
-            $table->string('email')->unique();
+            $table->string('email', 180)->unique();
             $table->string('password');
             $table->boolean('is_active')->default(false);
             $table->string('profile_picture_s3_key')->nullable();

@@ -15,7 +15,7 @@ class CreateThirdPartyInsurancesTable extends Migration
     {
         Schema::create('third_party_insurances', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
+            $table->string('name', 180)->unique();
         });
     }
 
