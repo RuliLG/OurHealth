@@ -4,6 +4,7 @@ use App\Http\Controllers\CountriesController;
 use App\Http\Controllers\HospitalDepartmentsController;
 use App\Http\Controllers\HospitalsController;
 use App\Http\Controllers\RegionsController;
+use App\Http\Controllers\ThirdPartyInsurancesController;
 use App\Models\HospitalDepartment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -35,3 +36,8 @@ Route::get('/hospitals/{hospitalId}/departments', [HospitalDepartmentsController
 Route::post('/hospitals/{hospitalId}/departments', [HospitalDepartmentsController::class, 'store']);
 Route::patch('/hospitals/{hospitalId}/departments/{id}', [HospitalDepartmentsController::class, 'update']);
 Route::delete('/hospitals/{hospitalId}/departments/{id}', [HospitalDepartmentsController::class, 'destroy']);
+
+Route::get('/third-party-insurances', [ThirdPartyInsurancesController::class, 'index']);
+Route::post('/third-party-insurances', [ThirdPartyInsurancesController::class, 'store']);
+Route::patch('/third-party-insurances/{id}', [ThirdPartyInsurancesController::class, 'update']);
+Route::delete('/third-party-insurances/{id}', [ThirdPartyInsurancesController::class, 'destroy']);
