@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AllergiesController;
+use App\Http\Controllers\ConditionsController;
 use App\Http\Controllers\CountriesController;
 use App\Http\Controllers\HospitalDepartmentsController;
 use App\Http\Controllers\HospitalsController;
@@ -48,3 +49,9 @@ Route::get('/allergies/{id}', [AllergiesController::class, 'show']);
 Route::post('/allergies', [AllergiesController::class, 'store']);
 Route::patch('/allergies/{id}', [AllergiesController::class, 'update']);
 Route::delete('/allergies/{id}', [AllergiesController::class, 'destroy']);
+
+Route::get('/conditions', [ConditionsController::class, 'index']);
+Route::get('/conditions/{id}', [ConditionsController::class, 'show']);
+Route::post('/conditions', [ConditionsController::class, 'store']);
+Route::patch('/conditions/{id}', [ConditionsController::class, 'update']);
+Route::delete('/conditions/{id}', [ConditionsController::class, 'destroy']);
