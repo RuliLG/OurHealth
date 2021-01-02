@@ -6,6 +6,7 @@ use App\Http\Controllers\CountriesController;
 use App\Http\Controllers\HospitalDepartmentsController;
 use App\Http\Controllers\HospitalsController;
 use App\Http\Controllers\RegionsController;
+use App\Http\Controllers\SymptomsController;
 use App\Http\Controllers\ThirdPartyInsurancesController;
 use App\Models\HospitalDepartment;
 use Illuminate\Http\Request;
@@ -55,3 +56,9 @@ Route::get('/conditions/{id}', [ConditionsController::class, 'show']);
 Route::post('/conditions', [ConditionsController::class, 'store']);
 Route::patch('/conditions/{id}', [ConditionsController::class, 'update']);
 Route::delete('/conditions/{id}', [ConditionsController::class, 'destroy']);
+
+Route::get('/symptoms', [SymptomsController::class, 'index']);
+Route::get('/symptoms/{id}', [SymptomsController::class, 'show']);
+Route::post('/symptoms', [SymptomsController::class, 'store']);
+Route::patch('/symptoms/{id}', [SymptomsController::class, 'update']);
+Route::delete('/symptoms/{id}', [SymptomsController::class, 'destroy']);
