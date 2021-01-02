@@ -6,7 +6,8 @@ use App\Http\Services\CountryService;
 
 class CountriesController extends Controller
 {
-    public function __construct(CountryService $countryService) {
+    public function __construct(CountryService $countryService)
+    {
         $this->countryService = $countryService;
     }
 

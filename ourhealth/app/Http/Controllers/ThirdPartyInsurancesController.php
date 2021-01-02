@@ -9,7 +9,8 @@ use Symfony\Component\Routing\Exception\InvalidParameterException;
 
 class ThirdPartyInsurancesController extends Controller
 {
-    public function __construct(ThirdPartyInsuranceService $thirdPartyInsuranceService) {
+    public function __construct(ThirdPartyInsuranceService $thirdPartyInsuranceService)
+    {
         $this->thirdPartyInsuranceService = $thirdPartyInsuranceService;
     }
     /**
@@ -46,7 +47,7 @@ class ThirdPartyInsurancesController extends Controller
             ], 422);
         } catch (Exception $e) {
             return response()->json([
-                'error' => $e->getMessage()
+                'error' => 'Unknown error'
             ], 500);
         }
     }
