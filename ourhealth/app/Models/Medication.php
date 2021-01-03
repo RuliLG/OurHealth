@@ -11,7 +11,7 @@ class Medication extends Model
 
     public function category()
     {
-        return $this->belongsTo(MedicationCategory::class);
+        return $this->belongsTo(MedicationCategory::class, 'medication_category_id');
     }
 
     public function allergies()

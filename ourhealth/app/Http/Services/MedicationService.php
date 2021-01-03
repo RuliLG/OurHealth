@@ -19,8 +19,8 @@ class MedicationService
 
     public function get($id, $fail = false)
     {
-        $category = Medication::with('allergies', 'conditions', 'incompatibilities');
-        return $fail ? $category->findOrFail($id) : $category->find($id);
+        $medication = Medication::with('category', 'allergies', 'conditions', 'incompatibilities');
+        return $fail ? $medication->findOrFail($id) : $medication->find($id);
     }
 
     public function store($data)

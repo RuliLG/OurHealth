@@ -13,4 +13,9 @@ class Hospital extends Model
     {
         return $this->belongsTo(Region::class);
     }
+
+    public function departments()
+    {
+        return $this->hasMany(HospitalDepartment::class);
+    }
 }

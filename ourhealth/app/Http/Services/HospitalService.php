@@ -49,7 +49,7 @@ class HospitalService
      */
     public function get($id, $fail = false)
     {
-        $hospital = Hospital::with('departments');
+        $hospital = Hospital::with('region', 'departments');
         return $fail ? $hospital->findOrFail($id) : $hospital->find($id);
     }
 

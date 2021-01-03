@@ -40,6 +40,7 @@ Route::prefix('v1')->group(function() {
         Route::get('/regions/{id}', [RegionsController::class, 'get']);
 
         Route::get('/hospitals', [HospitalsController::class, 'index']);
+        Route::get('/hospitals/{id}', [HospitalsController::class, 'show']);
         Route::post('/hospitals', [HospitalsController::class, 'store'])->middleware('superadmin');
         Route::patch('/hospitals/{id}', [HospitalsController::class, 'update'])->middleware('superadmin');
         Route::delete('/hospitals/{id}', [HospitalsController::class, 'destroy'])->middleware('superadmin');
