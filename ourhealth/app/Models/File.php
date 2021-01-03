@@ -27,6 +27,11 @@ class File extends Model
         return $this->belongsTo(Visit::class);
     }
 
+    public function uploaded_by()
+    {
+        return $this->belongsTo(User::class, 'uploaded_by_id');
+    }
+
     public function getFilePathAttribute()
     {
         return Storage::url($this->s3_key);

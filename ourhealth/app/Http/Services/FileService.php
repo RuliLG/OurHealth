@@ -29,17 +29,17 @@ class FileService
 
     public function getFromPatient(Patient $patient)
     {
-        return $patient->files;
+        return $patient->files()->with('uploaded_by')->get();
     }
 
     public function getFromVisit(Visit $visit)
     {
-        return $visit->files;
+        return $visit->files()->with('uploaded_by')->get();
     }
 
     public function get($id, $fail = false)
     {
-        return $fail ? File::findOrFail($id) : File::find($id);
+        return $fail ? File::with('uploaded_by')->findOrFail($id) : File::with('uploaded_by')->find($id);
     }
 
     public function store($data)
