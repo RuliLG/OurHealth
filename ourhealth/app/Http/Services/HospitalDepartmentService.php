@@ -57,7 +57,7 @@ class HospitalDepartmentService
     public function update($id, $data)
     {
         $validator = Validator::make($data, [
-            'name' => 'sometimes|string|max:40',
+            'name' => 'sometimes|nullable|string|max:40',
         ]);
 
         if ($validator->fails()) {

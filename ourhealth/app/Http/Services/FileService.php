@@ -46,8 +46,8 @@ class FileService
     {
         $validator = Validator::make($data, [
             'patient' => 'required|exists:patients,id',
-            'visit' => 'sometimes|exists:visits,id',
-            'file_name' => 'sometimes|string|max:255',
+            'visit' => 'sometimes|nullable|exists:visits,id',
+            'file_name' => 'sometimes|nullable|string|max:255',
             'file' => 'required|file'
         ]);
 

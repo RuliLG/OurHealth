@@ -36,7 +36,7 @@ class ThirdPartyInsuranceService
     public function update($id, $data)
     {
         $validator = Validator::make($data, [
-            'name' => 'sometimes|string|max:180|unique:third_party_insurances,name,' . $id
+            'name' => 'sometimes|nullable|string|max:180|unique:third_party_insurances,name,' . $id
         ]);
 
         if ($validator->fails()) {

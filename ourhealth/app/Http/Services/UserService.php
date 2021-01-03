@@ -7,7 +7,6 @@ use App\Models\HospitalDepartment;
 use App\Models\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Symfony\Component\Routing\Exception\InvalidParameterException;
@@ -32,13 +31,13 @@ class UserService
         Gate::authorize('store');
         $validator = Validator::make($data, [
             'name' => 'required|string|max:255',
-            'last_name' => 'sometimes|string|max:255',
+            'last_name' => 'sometimes|nullable|string|max:255',
             'email' => 'required|string|max:180|email:rfc,dns|unique:users,email',
             'password' => 'required|string|min:8|max:255',
-            'profile_picture' => 'sometimes|file|image|dimensions:min_width=150,min_height=150',
+            'profile_picture' => 'sometimes|nullable|file|image|dimensions:min_width=150,min_height=150',
             'hospital' => 'required|exists:hospitals,id',
             'hospital_department' => 'required|exists:hospital_departments,id',
-            'position' => 'sometimes|string|max:255'
+            'position' => 'sometimes|nullable|string|max:255'
         ]);
 
         if ($validator->fails()) {
@@ -82,14 +81,14 @@ class UserService
         $user = User::findOrFail($id);
         Gate::authorize('update', $user);
         $validator = Validator::make($data, [
-            'name' => 'sometimes|string|max:255',
-            'last_name' => 'sometimes|string|max:255',
-            'email' => 'sometimes|string|max:180|email:rfc,dns|unique:users,email,' . $id,
-            'password' => 'sometimes|string|min:8|max:255',
-            'profile_picture' => 'sometimes|file|image|dimensions:min_width=150,min_height=150',
-            'hospital' => 'sometimes|exists:hospitals,id',
-            'hospital_department' => 'sometimes|exists:hospital_departments,id',
-            'position' => 'sometimes|string|max:255'
+            'name' => 'sometimes|nullable|string|max:255',
+            'last_name' => 'sometimes|nullable|string|max:255',
+            'email' => 'sometimes|nullable|string|max:180|email:rfc,dns|unique:users,email,' . $id,
+            'password' => 'sometimes|nullable|string|min:8|max:255',
+            'profile_picture' => 'sometimes|nullable|file|image|dimensions:min_width=150,min_height=150',
+            'hospital' => 'sometimes|nullable|exists:hospitals,id',
+            'hospital_department' => 'sometimes|nullable|exists:hospital_departments,id',
+            'position' => 'sometimes|nullable|string|max:255'
         ]);
 
         if ($validator->fails()) {

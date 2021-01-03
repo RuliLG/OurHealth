@@ -23,7 +23,7 @@ class ConditionService
         $validator = Validator::make($data, [
             'name' => 'required|string|max:180|unique:conditions,name',
             'severity' => 'required|string|in:none,low,mid,high',
-            'description' => 'sometimes|string'
+            'description' => 'sometimes|nullable|string'
         ]);
 
         if ($validator->fails()) {
@@ -45,9 +45,9 @@ class ConditionService
     public function update($id, $data)
     {
         $validator = Validator::make($data, [
-            'name' => 'sometimes|string|max:180|unique:conditions,name,' . $id,
-            'severity' => 'sometimes|string|in:none,low,mid,high',
-            'description' => 'sometimes|string'
+            'name' => 'sometimes|nullable|string|max:180|unique:conditions,name,' . $id,
+            'severity' => 'sometimes|nullable|string|in:none,low,mid,high',
+            'description' => 'sometimes|nullable|string'
         ]);
 
         if ($validator->fails()) {

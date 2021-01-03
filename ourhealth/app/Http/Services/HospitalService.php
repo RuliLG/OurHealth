@@ -17,8 +17,8 @@ class HospitalService
     public function getAll($options = [])
     {
         $validator = Validator::make($options, [
-            'country' => 'sometimes|exists:countries,iso_code',
-            'region' => 'sometimes|exists:regions,id'
+            'country' => 'sometimes|nullable|exists:countries,iso_code',
+            'region' => 'sometimes|nullable|exists:regions,id'
         ]);
 
         if ($validator->fails()) {
@@ -84,8 +84,8 @@ class HospitalService
     public function update($id, $data)
     {
         $validator = Validator::make($data, [
-            'region' => 'sometimes|exists:regions,id',
-            'name' => 'sometimes|string|max:60',
+            'region' => 'sometimes|nullable|exists:regions,id',
+            'name' => 'sometimes|nullable|string|max:60',
         ]);
 
         if ($validator->fails()) {

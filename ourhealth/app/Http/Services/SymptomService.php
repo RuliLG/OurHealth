@@ -22,7 +22,7 @@ class SymptomService
     {
         $validator = Validator::make($data, [
             'name' => 'required|string|max:180|unique:symptoms,name',
-            'description' => 'sometimes|string'
+            'description' => 'sometimes|nullable|string'
         ]);
 
         if ($validator->fails()) {
@@ -43,8 +43,8 @@ class SymptomService
     public function update($id, $data)
     {
         $validator = Validator::make($data, [
-            'name' => 'sometimes|string|max:180|unique:symptoms,name,' . $id,
-            'description' => 'sometimes|string'
+            'name' => 'sometimes|nullable|string|max:180|unique:symptoms,name,' . $id,
+            'description' => 'sometimes|nullable|string'
         ]);
 
         if ($validator->fails()) {

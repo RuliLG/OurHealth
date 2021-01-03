@@ -46,7 +46,7 @@ class MedicationCategoryService
     public function update($id, $data)
     {
         $validator = Validator::make($data, [
-            'name' => 'sometimes|string|max:180|unique:medication_categories,name,' . $id,
+            'name' => 'sometimes|nullable|string|max:180|unique:medication_categories,name,' . $id,
         ]);
 
         if ($validator->fails()) {
