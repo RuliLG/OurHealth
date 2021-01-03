@@ -17,7 +17,7 @@ class CreateMeasurementsTable extends Migration
             $table->id();
             $table->foreignId('patient_id')->constrained()->cascadeOnDelete();
             $table->foreignId('visit_id')->nullable()->constrained()->cascadeOnDelete();
-            $table->enum('type', ['heart', 'blood', 'urine']); // TODO: Preguntar
+            $table->enum('type', ['vitals','triage','heart','blood','urine','other']);
             $table->string('other_type', 40)->nullable();
             $table->string('name');
             $table->string('value');

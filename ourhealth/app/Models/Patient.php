@@ -82,6 +82,12 @@ class Patient extends Model
         return $this->belongsToMany(Medication::class, 'patient_medications');
     }
 
+    public function measurements()
+    {
+        return $this->hasMany(Measurement::class)
+            ->orderBy('created_at', 'DESC');
+    }
+
     public function files()
     {
         return $this->hasMany(File::class)
