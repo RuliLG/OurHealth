@@ -9,6 +9,10 @@ class MedicationAllergy extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'medication_id', 'allergy_id',
+    ];
+
     public function medication()
     {
         return $this->belongsTo(Medication::class);

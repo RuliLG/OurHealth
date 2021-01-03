@@ -16,7 +16,7 @@ class CreateMedicationsTable extends Migration
         Schema::create('medications', function (Blueprint $table) {
             $table->id();
             $table->string('name', 60);
-            $table->enum('kind', ['capsule', 'tablet', 'inhaler', 'sachet', 'needle', 'cure', 'intravenous']);
+            $table->enum('kind', ['capsule', 'tablet', 'inhaler', 'sachet', 'needle', 'cure', 'intravenous', 'gel', 'spray', 'mousse', 'syrup']);
             $table->foreignId('medication_category_id')->nullable()->constrained()->nullOnDelete();
             $table->timestamps();
         });

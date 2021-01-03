@@ -9,6 +9,10 @@ class MedicationIncompatibility extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'medication_id', 'incompatible_with',
+    ];
+
     public function medication()
     {
         return $this->belongsTo(Medication::class);

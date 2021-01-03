@@ -6,10 +6,10 @@ use App\Http\Controllers\CountriesController;
 use App\Http\Controllers\HospitalDepartmentsController;
 use App\Http\Controllers\HospitalsController;
 use App\Http\Controllers\MedicationCategoriesController;
+use App\Http\Controllers\MedicationsController;
 use App\Http\Controllers\RegionsController;
 use App\Http\Controllers\SymptomsController;
 use App\Http\Controllers\ThirdPartyInsurancesController;
-use App\Models\HospitalDepartment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -69,3 +69,18 @@ Route::get('/medications/categories/full', [MedicationCategoriesController::clas
 Route::post('/medications/categories', [MedicationCategoriesController::class, 'store']);
 Route::patch('/medications/categories/{id}', [MedicationCategoriesController::class, 'update']);
 Route::delete('/medications/categories/{id}', [MedicationCategoriesController::class, 'destroy']);
+
+Route::get('/medications', [MedicationsController::class, 'index']);
+Route::get('/medications/{id}', [MedicationsController::class, 'show']);
+Route::post('/medications', [MedicationsController::class, 'store']);
+Route::patch('/medications/{id}', [MedicationsController::class, 'update']);
+Route::delete('/medications/{id}', [MedicationsController::class, 'destroy']);
+
+Route::post('/medications/{medication}/conditions/{condition}', [MedicationsController::class, 'storeCondition']);
+Route::delete('/medications/{medication}/conditions/{condition}', [MedicationsController::class, 'destroyCondition']);
+
+Route::post('/medications/{medication}/allergies/{allergy}', [MedicationsController::class, 'storeAllergy']);
+Route::delete('/medications/{medication}/allergies/{allergy}', [MedicationsController::class, 'destroyAllergy']);
+
+Route::post('/medications/{medication}/incompatibilities/{incompatibleWith}', [MedicationsController::class, 'storeIncompatibility']);
+Route::delete('/medications/{medication}/incompatibilities/{incompatibleWith}', [MedicationsController::class, 'destroyIncompatibility']);
