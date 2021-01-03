@@ -40,4 +40,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getIsSuperadminAttribute()
+    {
+        return $this->role === 'superadmin';
+    }
+
+    public function getIsHospitalAdminAttribute()
+    {
+        return $this->role === 'hospital_admin';
+    }
+
+    public function getIsDoctorAttribute()
+    {
+        return $this->role === 'doctor';
+    }
 }

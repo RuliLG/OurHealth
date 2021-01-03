@@ -5,6 +5,7 @@ namespace App\Http\Services;
 use App\Models\Hospital;
 use App\Models\HospitalDepartment;
 use App\Models\User;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -28,6 +29,7 @@ class UserService
 
     public function store($data)
     {
+        Gate::authorize('store');
         $validator = Validator::make($data, [
             'name' => 'required|string|max:255',
             'last_name' => 'sometimes|string|max:255',
@@ -43,7 +45,7 @@ class UserService
             throw new InvalidParameterException($validator->errors()->first());
         }
 
-        $hospital = Hospital::findOrFail($data['hospital']);
+        $hospital = auth()->user()->is_hospital_admin ? auth()->user()->hospital : Hospital::findOrFail($data['hospital']);
         $hospitalDepartment = HospitalDepartment::findOrFail($data['hospital_department']);
         if ($hospitalDepartment->hospital_id !== $hospital->id) {
             throw new InvalidParameterException('Invalid hospital department');
@@ -80,6 +82,8 @@ class UserService
 
     public function update($id, $data)
     {
+        $user = User::findOrFail($id);
+        Gate::authorize('update', $user);
         $validator = Validator::make($data, [
             'name' => 'sometimes|string|max:255',
             'last_name' => 'sometimes|string|max:255',
@@ -95,9 +99,12 @@ class UserService
             throw new InvalidParameterException($validator->errors()->first());
         }
 
-        $user = User::findOrFail($id);
+        if (isset($data['hospital'])) {
+            $hospital = auth()->user()->is_hospital_admin ? auth()->user()->hospital : Hospital::findOrFail($data['hospital']);
+        } else {
+            $hospital = $user->hospital;
+        }
 
-        $hospital = isset($data['hospital']) ? Hospital::findOrFail($data['hospital']) : $user->hospital;
         if (isset($data['hospital_department'])) {
             $hospitalDepartment = HospitalDepartment::findOrFail($data['hospital_department']);
             if ($hospitalDepartment->hospital_id !== $hospital->id) {
@@ -155,6 +162,7 @@ class UserService
     public function destroy($id)
     {
         $user = User::findOrFail($id);
+        Gate::authorize('delete', $user);
         $user->delete();
     }
 }
