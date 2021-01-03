@@ -61,4 +61,10 @@ class Patient extends Model
     {
         return $this->belongsTo(Patient::class, 'id', 'biological_mother_id');
     }
+
+    public function files()
+    {
+        return $this->hasMany(File::class)
+            ->orderBy('created_at', 'DESC');
+    }
 }

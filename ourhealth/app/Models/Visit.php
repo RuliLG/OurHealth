@@ -57,4 +57,10 @@ class Visit extends Model
     {
         return $this->hasManyThrough(Symptom::class, VisitSymptom::class);
     }
+
+    public function files()
+    {
+        return $this->hasMany(File::class)
+            ->orderBy('created_at', 'DESC');
+    }
 }

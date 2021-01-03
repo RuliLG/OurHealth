@@ -3,10 +3,12 @@
 use App\Http\Controllers\AllergiesController;
 use App\Http\Controllers\ConditionsController;
 use App\Http\Controllers\CountriesController;
+use App\Http\Controllers\FilesController;
 use App\Http\Controllers\HospitalDepartmentsController;
 use App\Http\Controllers\HospitalsController;
 use App\Http\Controllers\MedicationCategoriesController;
 use App\Http\Controllers\MedicationsController;
+use App\Http\Controllers\PatientsController;
 use App\Http\Controllers\RegionsController;
 use App\Http\Controllers\SymptomsController;
 use App\Http\Controllers\ThirdPartyInsurancesController;
@@ -90,5 +92,17 @@ Route::prefix('v1')->group(function() {
         Route::post('/users', [UsersController::class, 'store'])->middleware('hospital_admin');
         Route::patch('/users/{id}', [UsersController::class, 'update'])->middleware('hospital_admin');
         Route::delete('/users/{id}', [UsersController::class, 'destroy'])->middleware('hospital_admin');
+
+        Route::get('/patients/{patient}/files', [FilesController::class, 'fromPatient']);
+        Route::get('/visits/{visit}/files', [FilesController::class, 'fromVisit']);
+        Route::get('/files/{id}', [FilesController::class, 'show']);
+        Route::post('/files', [FilesController::class, 'store']);
+        Route::delete('/files/{id}', [FilesController::class, 'destroy'])->middleware('hospital_admin');
+
+        Route::get('/patients', [PatientsController::class, 'index']);
+        Route::get('/patients/{id}', [PatientsController::class, 'show']);
+        Route::get('/patients/{isoCode}/{id}', [PatientsController::class, 'showByCountryId']);
+        Route::patch('/patients/{id}', [PatientsController::class, 'update']);
+        Route::delete('/patients/{id}', [PatientsController::class, 'destroy'])->middleware('superadmin');
     });
 });
