@@ -68,10 +68,7 @@ class UserService
         }
 
         if (isset($data['profile_picture'])) {
-            $uuid = Str::uuid();
-            $fileName = $uuid . '.' . $data['profile_picture']->extension();
-            $s3Path = 'avatars/' . $fileName;
-            Storage::put($s3Path, $data['profile_picture']->get());
+            $s3Path = (new FileService)->upload($data['profile_picture'], 'avatars');
             $user->profile_picture_s3_key = $s3Path;
         }
 
@@ -145,10 +142,7 @@ class UserService
         }
 
         if (isset($data['profile_picture'])) {
-            $uuid = Str::uuid();
-            $fileName = $uuid . '.' . $data['profile_picture']->extension();
-            $s3Path = 'avatars/' . $fileName;
-            Storage::put($s3Path, $data['profile_picture']->get());
+            $s3Path = (new FileService)->upload($data['profile_picture'], 'avatars');
             $user->profile_picture_s3_key = $s3Path;
         }
 
