@@ -34,7 +34,7 @@ class Patient extends Model
 
     public function country()
     {
-        return $this->belongsTo(Country::class, 'iso_code', 'nationality');
+        return $this->belongsTo(Country::class, 'nationality', 'iso_code');
     }
 
     public function region()
