@@ -102,6 +102,7 @@ Route::prefix('v1')->group(function() {
         Route::get('/patients', [PatientsController::class, 'index']);
         Route::get('/patients/{id}', [PatientsController::class, 'show']);
         Route::get('/patients/{isoCode}/{id}', [PatientsController::class, 'showByCountryId']);
+        Route::post('/patients', [PatientsController::class, 'store']);
         Route::patch('/patients/{id}', [PatientsController::class, 'update']);
         Route::delete('/patients/{id}', [PatientsController::class, 'destroy'])->middleware('superadmin');
     });

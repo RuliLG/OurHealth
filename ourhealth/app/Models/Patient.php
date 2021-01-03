@@ -13,8 +13,13 @@ class Patient extends Model
     protected $appends = [
         'photo_url', 'age',
     ];
+
     protected $hidden = [
         'photo_s3_key',
+    ];
+
+    protected $casts = [
+        'date_of_birth' => 'datetime',
     ];
 
     public function getPhotoUrlAttribute()
@@ -24,7 +29,7 @@ class Patient extends Model
 
     public function getAgeAttribute()
     {
-        return $this->birth_date->age;
+        return $this->date_of_birth ? $this->date_of_birth->age : null;
     }
 
     public function country()
@@ -39,7 +44,7 @@ class Patient extends Model
 
     public function preferred_hospital()
     {
-        return $this->belongsTo(Hospital::class, 'id', 'preferred_hospital_id');
+        return $this->belongsTo(Hospital::class, 'preferred_hospital_id', 'id');
     }
 
     public function third_party_insurance()
@@ -49,17 +54,32 @@ class Patient extends Model
 
     public function doctor()
     {
-        return $this->belongsTo(User::class, 'id', 'doctor_id');
+        return $this->belongsTo(User::class, 'doctor_id', 'id');
     }
 
     public function biological_father()
     {
-        return $this->belongsTo(Patient::class, 'id', 'biological_father_id');
+        return $this->belongsTo(Patient::class, 'biological_father_id', 'id');
     }
 
     public function biological_mother()
     {
-        return $this->belongsTo(Patient::class, 'id', 'biological_mother_id');
+        return $this->belongsTo(Patient::class, 'biological_mother_id', 'id');
+    }
+
+    public function conditions()
+    {
+        return $this->belongsToMany(Condition::class, 'patient_conditions');
+    }
+
+    public function allergies()
+    {
+        return $this->belongsToMany(Allergy::class, 'patient_allergies');
+    }
+
+    public function medications()
+    {
+        return $this->belongsToMany(Medication::class, 'patient_medications');
     }
 
     public function files()
