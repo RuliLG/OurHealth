@@ -10,6 +10,7 @@ use App\Http\Controllers\MedicationsController;
 use App\Http\Controllers\RegionsController;
 use App\Http\Controllers\SymptomsController;
 use App\Http\Controllers\ThirdPartyInsurancesController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -75,12 +76,14 @@ Route::get('/medications/{id}', [MedicationsController::class, 'show']);
 Route::post('/medications', [MedicationsController::class, 'store']);
 Route::patch('/medications/{id}', [MedicationsController::class, 'update']);
 Route::delete('/medications/{id}', [MedicationsController::class, 'destroy']);
-
 Route::post('/medications/{medication}/conditions/{condition}', [MedicationsController::class, 'storeCondition']);
 Route::delete('/medications/{medication}/conditions/{condition}', [MedicationsController::class, 'destroyCondition']);
-
 Route::post('/medications/{medication}/allergies/{allergy}', [MedicationsController::class, 'storeAllergy']);
 Route::delete('/medications/{medication}/allergies/{allergy}', [MedicationsController::class, 'destroyAllergy']);
-
 Route::post('/medications/{medication}/incompatibilities/{incompatibleWith}', [MedicationsController::class, 'storeIncompatibility']);
 Route::delete('/medications/{medication}/incompatibilities/{incompatibleWith}', [MedicationsController::class, 'destroyIncompatibility']);
+
+Route::post('/users', [UsersController::class, 'store']);
+Route::patch('/users/{id}', [UsersController::class, 'update']);
+Route::delete('/users/{id}', [UsersController::class, 'destroy']);
+Route::post('/login', [UsersController::class, 'login']);
