@@ -6,6 +6,7 @@ use App\Models\Medication;
 use App\Models\MedicationAllergy;
 use App\Models\MedicationCondition;
 use App\Models\MedicationIncompatibility;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\Routing\Exception\InvalidParameterException;
 
@@ -41,6 +42,7 @@ class MedicationService
             throw new InvalidParameterException($validator->errors()->first());
         }
 
+        DB::beginTransaction();
         $medication = new Medication;
         $medication->commercial_name = $data['commercial_name'];
         $medication->active_ingredient = $data['active_ingredient'];
@@ -66,6 +68,7 @@ class MedicationService
                 $this->linkIncompatibility($medication, $incompatible);
             }
         }
+        DB::commit();
 
         return $this->get($medication->id);
     }
@@ -89,6 +92,7 @@ class MedicationService
             throw new InvalidParameterException($validator->errors()->first());
         }
 
+        DB::beginTransaction();
         $medication = Medication::findOrFail($id);
         if (isset($data['commercial_name'])) {
             $medication->commercial_name = $data['commercial_name'];
@@ -128,6 +132,8 @@ class MedicationService
         if ($medication->isDirty()) {
             $medication->save();
         }
+
+        DB::commit();
 
         return $this->get($medication->id);
     }
