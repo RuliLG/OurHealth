@@ -41,6 +41,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function hospital()
+    {
+        return $this->belongsTo(Hospital::class);
+    }
+
+    public function hospital_department()
+    {
+        return $this->belongsTo(HospitalDepartment::class);
+    }
+
     public function getIsSuperadminAttribute()
     {
         return $this->role === 'superadmin';
