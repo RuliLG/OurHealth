@@ -29,6 +29,13 @@ class UsersController extends Controller
         ]);
     }
 
+    public function show($id)
+    {
+        return response()->json([
+            'user' => $this->userService->get($id)
+        ]);
+    }
+
     public function store(Request $request)
     {
         try {

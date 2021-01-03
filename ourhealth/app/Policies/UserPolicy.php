@@ -39,6 +39,21 @@ class UserPolicy
         return $user->id === $toUpdate->id;
     }
 
+    public function show(User $user, User $toSee)
+    {
+        // A superadmin can always update
+        if ($user->is_superadmin) {
+            return true;
+        }
+
+        // A hospital admin can only update themselves and other doctors from the same hospital
+        if ($user->is_hospital_admin) {
+            return $toSee->is_doctor && $user->hospital_id === $toSee->hospital_id || $toSee->id === $user->id;
+        }
+
+        return $user->id === $toSee->id;
+    }
+
     public function delete(User $user, User $toDelete)
     {
         // A superadmin can always delete

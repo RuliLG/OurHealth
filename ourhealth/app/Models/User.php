@@ -32,6 +32,12 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    protected $appends = [
+        'is_superadmin',
+        'is_hospital_admin',
+        'is_doctor',
+    ];
+
     /**
      * The attributes that should be cast to native types.
      *

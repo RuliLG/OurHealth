@@ -92,6 +92,7 @@ Route::prefix('v1')->group(function() {
         Route::delete('/medications/{medication}/incompatibilities/{incompatibleWith}', [MedicationsController::class, 'destroyIncompatibility'])->middleware('superadmin');
 
         Route::post('/users', [UsersController::class, 'store'])->middleware('hospital_admin');
+        Route::get('/users/{id}', [UsersController::class, 'show']);
         Route::patch('/users/{id}', [UsersController::class, 'update'])->middleware('hospital_admin');
         Route::delete('/users/{id}', [UsersController::class, 'destroy'])->middleware('hospital_admin');
 

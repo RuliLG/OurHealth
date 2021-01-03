@@ -26,9 +26,16 @@ class UserService
         return null;
     }
 
+    public function get($id)
+    {
+        $user = User::with('hospital', 'hospital_department')->findOrFail($id);
+        Gate::authorize('show', $user);
+        return $user;
+    }
+
     public function store($data)
     {
-        Gate::authorize('store');
+        Gate::authorize('create-user');
         $validator = Validator::make($data, [
             'name' => 'required|string|max:255',
             'last_name' => 'sometimes|nullable|string|max:255',
