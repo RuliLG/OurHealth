@@ -5,6 +5,7 @@ use App\Http\Controllers\ConditionsController;
 use App\Http\Controllers\CountriesController;
 use App\Http\Controllers\HospitalDepartmentsController;
 use App\Http\Controllers\HospitalsController;
+use App\Http\Controllers\MedicationCategoriesController;
 use App\Http\Controllers\RegionsController;
 use App\Http\Controllers\SymptomsController;
 use App\Http\Controllers\ThirdPartyInsurancesController;
@@ -62,3 +63,9 @@ Route::get('/symptoms/{id}', [SymptomsController::class, 'show']);
 Route::post('/symptoms', [SymptomsController::class, 'store']);
 Route::patch('/symptoms/{id}', [SymptomsController::class, 'update']);
 Route::delete('/symptoms/{id}', [SymptomsController::class, 'destroy']);
+
+Route::get('/medications/categories', [MedicationCategoriesController::class, 'index']);
+Route::get('/medications/categories/full', [MedicationCategoriesController::class, 'full']);
+Route::post('/medications/categories', [MedicationCategoriesController::class, 'store']);
+Route::patch('/medications/categories/{id}', [MedicationCategoriesController::class, 'update']);
+Route::delete('/medications/categories/{id}', [MedicationCategoriesController::class, 'destroy']);
