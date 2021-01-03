@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
@@ -30,12 +31,15 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'role',
+        'profile_picture_s3_key',
     ];
 
     protected $appends = [
         'is_superadmin',
         'is_hospital_admin',
         'is_doctor',
+        'profile_picture_url',
     ];
 
     /**
@@ -46,6 +50,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getProfilePictureUrlAttribute()
+    {
+        return $this->profile_picture_s3_key ? Storage::url($this->profile_picture_s3_key) : null;
+    }
 
     public function hospital()
     {
