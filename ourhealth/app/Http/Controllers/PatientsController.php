@@ -35,7 +35,7 @@ class PatientsController extends Controller
     {
         try {
             return response()->json([
-                'user' => $this->patientService->store($request->all())
+                'patient' => $this->patientService->store($request->all())
             ]);
         } catch (InvalidParameterException $e) {
             return response()->json([
@@ -79,7 +79,7 @@ class PatientsController extends Controller
     {
         try {
             return response()->json([
-                'user' => $this->patientService->update($id, $request->all())
+                'patient' => $this->patientService->update($id, $request->all())
             ]);
         } catch (InvalidParameterException $e) {
             return response()->json([
