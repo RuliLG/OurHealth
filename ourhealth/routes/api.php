@@ -12,6 +12,7 @@ use App\Http\Controllers\MedicationCategoriesController;
 use App\Http\Controllers\MedicationsController;
 use App\Http\Controllers\PatientsController;
 use App\Http\Controllers\RegionsController;
+use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\SymptomsController;
 use App\Http\Controllers\ThirdPartyInsurancesController;
 use App\Http\Controllers\UsersController;
@@ -106,6 +107,7 @@ Route::prefix('v1')->group(function() {
 
         Route::get('/patients', [PatientsController::class, 'index']);
         Route::get('/patients/{id}', [PatientsController::class, 'show']);
+        Route::get('/patients/{patient}/reports', [ReportsController::class, 'fromPatient']);
         Route::get('/patients/{patient}/files', [FilesController::class, 'fromPatient']);
         Route::get('/patients/{patient}/appointments', [AppointmentsController::class, 'fromPatient']);
         Route::get('/patients/{patient}/measurements', [MeasurementsController::class, 'index']);
@@ -123,5 +125,13 @@ Route::prefix('v1')->group(function() {
         Route::post('/appointments', [AppointmentsController::class, 'store']);
         Route::patch('/appointments/{id}', [AppointmentsController::class, 'update']);
         Route::delete('/appointments/{id}', [AppointmentsController::class, 'destroy']);
+
+        Route::get('/visits/{visit}/reports', [ReportsController::class, 'fromVisit']);
+
+        Route::get('/reports', [ReportsController::class, 'index']);
+        Route::get('/reports/{id}', [ReportsController::class, 'show']);
+        Route::post('/reports', [ReportsController::class, 'store']);
+        Route::patch('/reports/{id}', [ReportsController::class, 'update']);
+        Route::delete('/reports/{id}', [ReportsController::class, 'destroy']);
     });
 });

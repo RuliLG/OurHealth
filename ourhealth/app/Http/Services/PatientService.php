@@ -22,13 +22,13 @@ class PatientService
 
     public function get($id, $fail = false)
     {
-        $patient = Patient::with('country', 'region', 'preferred_hospital', 'third_party_insurance', 'doctor', 'biological_father', 'biological_mother', 'files', 'allergies', 'conditions', 'medications', 'measurements');
+        $patient = Patient::with('country', 'region', 'preferred_hospital', 'third_party_insurance', 'doctor', 'biological_father', 'biological_mother', 'files', 'allergies', 'conditions', 'medications', 'measurements', 'reports');
         return $fail ? $patient->findOrFail($id) : $patient->find($id);
     }
 
     public function getByCountryId($isoCode, $id, $fail = false)
     {
-        $patient = Patient::with('country', 'region', 'preferred_hospital', 'third_party_insurance', 'doctor', 'biological_father', 'biological_mother', 'files', 'allergies', 'conditions', 'medications', 'measurements')
+        $patient = Patient::with('country', 'region', 'preferred_hospital', 'third_party_insurance', 'doctor', 'biological_father', 'biological_mother', 'files', 'allergies', 'conditions', 'medications', 'measurements', 'reports')
             ->where([
                 'nationality' => $isoCode,
                 'id_card' => $id

@@ -93,4 +93,10 @@ class Patient extends Model
         return $this->hasMany(File::class)
             ->orderBy('created_at', 'DESC');
     }
+
+    public function reports()
+    {
+        return $this->hasMany(File::class)
+            ->orderBy('created_at', 'DESC');
+    }
 }
