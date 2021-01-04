@@ -9,6 +9,10 @@ class VisitDiagnosis extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'visit_id', 'condition_id', 'allergy_id',
+    ];
+
     public function visit()
     {
         return $this->belongsTo(Visit::class);

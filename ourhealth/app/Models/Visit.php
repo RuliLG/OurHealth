@@ -26,41 +26,43 @@ class Visit extends Model
 
     public function doctor()
     {
-        return $this->belongsTo(User::class, 'id', 'doctor_id');
+        return $this->belongsTo(User::class, 'doctor_id', 'id');
     }
 
     public function vitals()
     {
-        return $this->hasMany(Measurement::class)
-            ->where('patient_id', $this->patient_id)
-            ->where('batch_id', $this->vitals_batch_id);
+        return $this->hasMany(Measurement::class);
     }
 
     public function triage()
     {
-        return $this->hasMany(Measurement::class)
-            ->where('patient_id', $this->patient_id)
-            ->where('batch_id', $this->triage_batch_id);
+        return $this->hasMany(Measurement::class);
     }
 
     public function conditions()
     {
-        return $this->hasManyThrough(Condition::class, VisitDiagnosis::class);
+        return $this->belongsToMany(Condition::class, 'visit_diagnoses');
     }
 
     public function allergies()
     {
-        return $this->hasManyThrough(Allergy::class, VisitDiagnosis::class);
+        return $this->belongsToMany(Allergy::class, 'visit_diagnoses');
     }
 
     public function symptoms()
     {
-        return $this->hasManyThrough(Symptom::class, VisitSymptom::class);
+        return $this->belongsToMany(Symptom::class, 'visit_symptoms');
     }
 
     public function files()
     {
         return $this->hasMany(File::class)
+            ->orderBy('created_at', 'DESC');
+    }
+
+    public function reports()
+    {
+        return $this->hasMany(Report::class)
             ->orderBy('created_at', 'DESC');
     }
 }

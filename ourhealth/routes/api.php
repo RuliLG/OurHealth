@@ -16,6 +16,7 @@ use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\SymptomsController;
 use App\Http\Controllers\ThirdPartyInsurancesController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\VisitsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -48,6 +49,7 @@ Route::prefix('v1')->group(function() {
         Route::delete('/hospitals/{id}', [HospitalsController::class, 'destroy'])->middleware('superadmin');
 
         Route::get('/hospitals/{hospital}/appointments', [AppointmentsController::class, 'fromHospital']);
+        Route::get('/hospitals/{hospital}/visits', [VisitsController::class, 'fromHospital']);
         Route::get('/hospitals/{hospitalId}/departments', [HospitalDepartmentsController::class, 'index']);
         Route::post('/hospitals/{hospitalId}/departments', [HospitalDepartmentsController::class, 'store'])->middleware('hospital_admin');
         Route::patch('/hospitals/{hospitalId}/departments/{id}', [HospitalDepartmentsController::class, 'update'])->middleware('hospital_admin');
@@ -97,6 +99,7 @@ Route::prefix('v1')->group(function() {
 
         Route::post('/users', [UsersController::class, 'store'])->middleware('hospital_admin');
         Route::get('/users/{id}', [UsersController::class, 'show']);
+        Route::get('/users/{user}/visits', [VisitsController::class, 'fromDoctor']);
         Route::patch('/users/{id}', [UsersController::class, 'update'])->middleware('hospital_admin');
         Route::delete('/users/{id}', [UsersController::class, 'destroy'])->middleware('hospital_admin');
 
@@ -108,6 +111,7 @@ Route::prefix('v1')->group(function() {
         Route::get('/patients', [PatientsController::class, 'index']);
         Route::get('/patients/{id}', [PatientsController::class, 'show']);
         Route::get('/patients/{patient}/reports', [ReportsController::class, 'fromPatient']);
+        Route::get('/patients/{patient}/visits', [VisitsController::class, 'fromPatient']);
         Route::get('/patients/{patient}/files', [FilesController::class, 'fromPatient']);
         Route::get('/patients/{patient}/appointments', [AppointmentsController::class, 'fromPatient']);
         Route::get('/patients/{patient}/measurements', [MeasurementsController::class, 'index']);
@@ -126,7 +130,15 @@ Route::prefix('v1')->group(function() {
         Route::patch('/appointments/{id}', [AppointmentsController::class, 'update']);
         Route::delete('/appointments/{id}', [AppointmentsController::class, 'destroy']);
 
+        Route::get('/visits', [VisitsController::class, 'index']);
+        Route::post('/visits', [VisitsController::class, 'store']);
         Route::get('/visits/{visit}/reports', [ReportsController::class, 'fromVisit']);
+        Route::get('/visits/{id}', [VisitsController::class, 'show']);
+        Route::patch('/visits/{id}', [VisitsController::class, 'update']);
+        Route::delete('/visits/{id}', [VisitsController::class, 'destroy']);
+        Route::delete('/visits/{visit}/conditions/{condition}', [VisitsController::class, 'removeCondition']);
+        Route::delete('/visits/{visit}/allergies/{allergy}', [VisitsController::class, 'removeAllergy']);
+        Route::delete('/visits/{visit}/symptoms/{symptom}', [VisitsController::class, 'removeSymptom']);
 
         Route::get('/reports', [ReportsController::class, 'index']);
         Route::get('/reports/{id}', [ReportsController::class, 'show']);
