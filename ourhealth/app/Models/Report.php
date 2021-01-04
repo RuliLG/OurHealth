@@ -21,11 +21,11 @@ class Report extends Model
 
     public function files()
     {
-        return $this->hasManyThrough(File::class, ReportFile::class);
+        return $this->belongsToMany(File::class, 'report_files');
     }
 
     public function measurements()
     {
-        return $this->hasManyThrough(Measurement::class, ReportMeasurement::class);
+        return $this->belongsToMany(Measurement::class, 'report_measurements');
     }
 }

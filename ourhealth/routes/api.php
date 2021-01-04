@@ -145,5 +145,7 @@ Route::prefix('v1')->group(function() {
         Route::post('/reports', [ReportsController::class, 'store']);
         Route::patch('/reports/{id}', [ReportsController::class, 'update']);
         Route::delete('/reports/{id}', [ReportsController::class, 'destroy']);
+        Route::delete('/reports/{report}/measurements/{measurement}', [ReportsController::class, 'unlinkMeasurement']);
+        Route::delete('/reports/{report}/files/{file}', [ReportsController::class, 'unlinkFile']);
     });
 });

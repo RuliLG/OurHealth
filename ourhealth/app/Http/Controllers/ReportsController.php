@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Services\ReportService;
+use App\Models\File;
+use App\Models\Measurement;
 use App\Models\Patient;
+use App\Models\Report;
 use App\Models\Visit;
 use Exception;
 use Illuminate\Http\Request;
@@ -41,7 +44,7 @@ class ReportsController extends Controller
     {
         $data = $request->all();
         $data['patient'] = $visit->patient_id;
-        $data['visit'] = $patient->visit_id;
+        $data['visit'] = $visit->id;
         return response()->json([
             'reports' => $this->reportService->getAll($data)
         ]);
@@ -115,7 +118,23 @@ class ReportsController extends Controller
      */
     public function destroy($id)
     {
-        $this->reportService->delete($id);
+        $this->reportService->destroy($id);
+        return response()->json([
+            'success' => true
+        ]);
+    }
+
+    public function unlinkMeasurement(Report $report, Measurement $measurement)
+    {
+        $this->reportService->unlinkMeasurement($report, $measurement->id);
+        return response()->json([
+            'success' => true
+        ]);
+    }
+
+    public function unlinkFile(Report $report, File $file)
+    {
+        $this->reportService->unlinkFile($report, $file->id);
         return response()->json([
             'success' => true
         ]);
