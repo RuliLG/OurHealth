@@ -18,7 +18,9 @@ class AppointmentsController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Display a list of the available appointments
+     *
+     * @param \Illuminate\Http\Request $request
      *
      * @return \Illuminate\Http\Response
      */
@@ -29,6 +31,13 @@ class AppointmentsController extends Controller
         ]);
     }
 
+    /**
+     * Returns a list of appointments from one patient
+     *
+     * @param \App\Models\Patient $patient
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
     public function fromPatient(Patient $patient, Request $request)
     {
         $data = $request->all();
@@ -38,6 +47,13 @@ class AppointmentsController extends Controller
         ]);
     }
 
+    /**
+     * Returns a list of appointments from one hospital
+     *
+     * @param \App\Models\Hospital $hospital
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
     public function fromHospital(Hospital $hospital, Request $request)
     {
         $data = $request->all();
@@ -48,6 +64,14 @@ class AppointmentsController extends Controller
         ]);
     }
 
+    /**
+     * Returns a list of appointments from one hospital department
+     *
+     * @param int $hospitalId
+     * @param int $departmentId
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
     public function fromHospitalDepartment($hospitalId, $departmentId, Request $request)
     {
         $hospital = Hospital::findOrFail($hospitalId);
@@ -65,7 +89,7 @@ class AppointmentsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a new appointment in the database
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -88,7 +112,7 @@ class AppointmentsController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified appointment.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -101,7 +125,7 @@ class AppointmentsController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Updates an appointment
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -125,7 +149,7 @@ class AppointmentsController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Removes an appointment
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

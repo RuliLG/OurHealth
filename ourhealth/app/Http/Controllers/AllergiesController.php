@@ -14,7 +14,7 @@ class AllergiesController extends Controller
         $this->allergyService = $allergyService;
     }
     /**
-     * Display a listing of the resource.
+     * Display a list of all the allergies
      *
      * @return \Illuminate\Http\Response
      */
@@ -26,7 +26,7 @@ class AllergiesController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a new allergy in the database
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -55,7 +55,7 @@ class AllergiesController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display an allergy
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -68,7 +68,7 @@ class AllergiesController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update an allergy
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id

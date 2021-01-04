@@ -18,7 +18,7 @@ class FilesController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a new file in both the database and the filesystem
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -41,7 +41,7 @@ class FilesController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified file.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -53,6 +53,12 @@ class FilesController extends Controller
         ]);
     }
 
+    /**
+     * Returns a list of the files belonging to a patient
+     *
+     * @param Patient $patient
+     * @return \Illuminate\Http\Response
+     */
     public function fromPatient(Patient $patient)
     {
         return response()->json([
@@ -60,6 +66,12 @@ class FilesController extends Controller
         ]);
     }
 
+    /**
+     * Returns a list of the files belonging to a visit
+     *
+     * @param Visit $visit
+     * @return \Illuminate\Http\Response
+     */
     public function fromVisit(Visit $visit)
     {
         return response()->json([
@@ -68,7 +80,7 @@ class FilesController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified file
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

@@ -21,7 +21,7 @@ class VisitsController extends Controller
         $this->visitService = $visitService;
     }
     /**
-     * Display a listing of the resource.
+     * Display a list of the visits from a hospital, patient or doctor
      *
      * @return \Illuminate\Http\Response
      */
@@ -32,6 +32,13 @@ class VisitsController extends Controller
         ]);
     }
 
+    /**
+     * Display a list of the visits from a patient
+     *
+     * @param Patient $patient
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
     public function fromPatient(Patient $patient, Request $request)
     {
         $data = $request->all();
@@ -41,6 +48,13 @@ class VisitsController extends Controller
         ]);
     }
 
+    /**
+     * Display a list of the visits to a hospital
+     *
+     * @param Hospital $hospital
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
     public function fromHospital(Hospital $hospital, Request $request)
     {
         $data = $request->all();
@@ -51,6 +65,13 @@ class VisitsController extends Controller
         ]);
     }
 
+    /**
+     * Display the visits to a dictor
+     *
+     * @param User $user
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
     public function fromDoctor(User $user, Request $request)
     {
         $data = $request->all();
@@ -62,7 +83,7 @@ class VisitsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a new visit
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -85,7 +106,7 @@ class VisitsController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified visit
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -98,7 +119,7 @@ class VisitsController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified visit
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -122,7 +143,7 @@ class VisitsController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified visit
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -135,6 +156,13 @@ class VisitsController extends Controller
         ]);
     }
 
+    /**
+     * Removes a condition from a visit
+     *
+     * @param Visit $visit
+     * @param Condition $condition
+     * @return \Illuminate\Http\Response
+     */
     public function removeCondition(Visit $visit, Condition $condition)
     {
         $this->visitService->unlinkDiagnosis($visit, ['condition' => $condition->id]);
@@ -143,6 +171,13 @@ class VisitsController extends Controller
         ]);
     }
 
+    /**
+     * Removes an allergy from a visit
+     *
+     * @param Visit $visit
+     * @param Allergy $allergy
+     * @return \Illuminate\Http\Response
+     */
     public function removeAllergy(Visit $visit, Allergy $allergy)
     {
         $this->visitService->unlinkDiagnosis($visit, ['allergy' => $allergy->id]);
@@ -151,6 +186,13 @@ class VisitsController extends Controller
         ]);
     }
 
+    /**
+     * Removes a symptom from a visit
+     *
+     * @param Visit $visit
+     * @param Symptom $symptom
+     * @return \Illuminate\Http\Response
+     */
     public function removeSymptom(Visit $visit, Symptom $symptom)
     {
         $this->visitService->unlinkSymptom($visit, $symptom->id);

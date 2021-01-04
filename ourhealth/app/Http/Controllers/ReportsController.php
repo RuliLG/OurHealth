@@ -20,8 +20,9 @@ class ReportsController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Display a list of the reports
      *
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
@@ -31,6 +32,13 @@ class ReportsController extends Controller
         ]);
     }
 
+    /**
+     * Display a list of the reports from a patient
+     *
+     * @param Patient $patient
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
     public function fromPatient(Patient $patient, Request $request)
     {
         $data = $request->all();
@@ -40,6 +48,13 @@ class ReportsController extends Controller
         ]);
     }
 
+    /**
+     * Display a list of the reports from a visit
+     *
+     * @param Visit $visit
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
     public function fromVisit(Visit $visit, Request $request)
     {
         $data = $request->all();
@@ -51,7 +66,7 @@ class ReportsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a new report
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -74,7 +89,7 @@ class ReportsController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified report
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -87,7 +102,7 @@ class ReportsController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified report
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -111,7 +126,7 @@ class ReportsController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified report
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -124,6 +139,13 @@ class ReportsController extends Controller
         ]);
     }
 
+    /**
+     * Unlink a report from a measurement
+     *
+     * @param Report $report
+     * @param Measurement $measurement
+     * @return \Illuminate\Http\Response
+     */
     public function unlinkMeasurement(Report $report, Measurement $measurement)
     {
         $this->reportService->unlinkMeasurement($report, $measurement->id);
@@ -132,6 +154,13 @@ class ReportsController extends Controller
         ]);
     }
 
+    /**
+     * Unlink a report from a file
+     *
+     * @param Report $report
+     * @param File $file
+     * @return \Illuminate\Http\Response
+     */
     public function unlinkFile(Report $report, File $file)
     {
         $this->reportService->unlinkFile($report, $file->id);

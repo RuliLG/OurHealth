@@ -16,8 +16,9 @@ class MeasurementsController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Display a list of the measurements from a specific patient
      *
+     * @param Patient $patient
      * @return \Illuminate\Http\Response
      */
     public function index(Patient $patient)
@@ -27,6 +28,13 @@ class MeasurementsController extends Controller
         ]);
     }
 
+    /**
+     * Display a list of the measurements frmo a specific patient and batchId
+     *
+     * @param Patient $patient
+     * @param int $batchId
+     * @return \Illuminate\Http\Response
+     */
     public function indexFromBatchId(Patient $patient, $batchId)
     {
         return response()->json([
@@ -35,7 +43,7 @@ class MeasurementsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store new measurements
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -58,7 +66,7 @@ class MeasurementsController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified measurement
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

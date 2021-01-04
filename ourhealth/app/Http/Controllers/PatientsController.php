@@ -14,7 +14,7 @@ class PatientsController extends Controller
         $this->patientService = $patientService;
     }
     /**
-     * Display a listing of the resource.
+     * Display a list of the patients
      *
      * @return \Illuminate\Http\Response
      */
@@ -26,7 +26,7 @@ class PatientsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a new patient
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -49,7 +49,7 @@ class PatientsController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified patient
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -61,6 +61,13 @@ class PatientsController extends Controller
         ]);
     }
 
+    /**
+     * Display the specified patient by providing their isoCode and national ID
+     *
+     * @param string $isoCode
+     * @param string $id
+     * @return \Illuminate\Http\Response
+     */
     public function showByCountryId($isoCode, $id)
     {
         return response()->json([
@@ -69,7 +76,7 @@ class PatientsController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified patient
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -93,7 +100,7 @@ class PatientsController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified patient
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

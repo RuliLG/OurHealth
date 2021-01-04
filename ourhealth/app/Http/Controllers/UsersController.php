@@ -15,6 +15,12 @@ class UsersController extends Controller
         $this->userService = $userService;
     }
 
+    /**
+     * Logs in a user using their email and password
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
     public function login(Request $request)
     {
         $user = $this->userService->login($request->get('email'), $request->get('password'));
@@ -29,6 +35,12 @@ class UsersController extends Controller
         ]);
     }
 
+    /**
+     * Displays user information
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
     public function show($id)
     {
         return response()->json([
@@ -36,6 +48,12 @@ class UsersController extends Controller
         ]);
     }
 
+    /**
+     * Store a new user
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
         try {
@@ -53,6 +71,13 @@ class UsersController extends Controller
         }
     }
 
+    /**
+     * Update the specified user
+     *
+     * @param Request $request
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
     public function update(Request $request, $id)
     {
         try {
@@ -70,6 +95,12 @@ class UsersController extends Controller
         }
     }
 
+    /**
+     * Delete the specified user
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
     public function destroy($id)
     {
         try {

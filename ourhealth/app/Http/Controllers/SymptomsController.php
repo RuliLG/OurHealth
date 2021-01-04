@@ -14,7 +14,7 @@ class SymptomsController extends Controller
         $this->symptomService = $symptomService;
     }
     /**
-     * Display a listing of the resource.
+     * Display a list of the available symptoms
      *
      * @return \Illuminate\Http\Response
      */
@@ -26,7 +26,7 @@ class SymptomsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a new symptom
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -54,7 +54,7 @@ class SymptomsController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified symptom.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -67,7 +67,7 @@ class SymptomsController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified symptom
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -96,7 +96,7 @@ class SymptomsController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified symptom
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

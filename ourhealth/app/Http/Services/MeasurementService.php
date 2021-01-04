@@ -10,11 +10,6 @@ use Symfony\Component\Routing\Exception\InvalidParameterException;
 
 class MeasurementService
 {
-    /**
-     * Returns a list of all the measurements from a patient
-     *
-     * @return array<Hospital>
-     */
     public function getFromPatient(Patient $patient)
     {
         return $patient->measurements;
@@ -28,11 +23,6 @@ class MeasurementService
             ->get();
     }
 
-    /**
-     * Creates a Measurement list
-     *
-     * @return array<Measurement>
-     */
     public function store($data)
     {
         $validator = Validator::make($data, [
@@ -68,13 +58,6 @@ class MeasurementService
         return $records;
     }
 
-    /**
-     * Removes a hospital from its id
-     *
-     * @param string $id
-     * @param boolean $fail if the function should abort with a 404 code if the hospital is not found
-     * @return void
-     */
     public function destroy($id)
     {
         $measurement = Measurement::findOrFail($id);

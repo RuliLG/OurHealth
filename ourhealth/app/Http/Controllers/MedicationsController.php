@@ -17,6 +17,11 @@ class MedicationsController extends Controller
         $this->medicationService = $medicationService;
     }
 
+    /**
+     * Display a list of all the medications
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         return response()->json([
@@ -24,6 +29,12 @@ class MedicationsController extends Controller
         ]);
     }
 
+    /**
+     * Display the information of a certain medication
+     *
+     * @param int $id
+     * @return void
+     */
     public function show($id)
     {
         return response()->json([
@@ -31,6 +42,12 @@ class MedicationsController extends Controller
         ]);
     }
 
+    /**
+     * Stores a new medication
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
         $data = $request->only([
@@ -58,6 +75,13 @@ class MedicationsController extends Controller
         }
     }
 
+    /**
+     * Updates a medication
+     *
+     * @param Request $request
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
     public function update(Request $request, $id)
     {
         $data = $request->only([
@@ -85,6 +109,12 @@ class MedicationsController extends Controller
         }
     }
 
+    /**
+     * Deletes a medication
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
     public function destroy($id)
     {
         $this->medicationService->destroy($id);
@@ -93,6 +123,13 @@ class MedicationsController extends Controller
         ]);
     }
 
+    /**
+     * Links a condition to a medication
+     *
+     * @param Medication $medication
+     * @param Condition $condition
+     * @return \Illuminate\Http\Response
+     */
     public function storeCondition(Medication $medication, Condition $condition)
     {
         $this->medicationService->linkCondition($medication, $condition->id);
@@ -101,6 +138,13 @@ class MedicationsController extends Controller
         ]);
     }
 
+    /**
+     * Unlinks a condition from a medication
+     *
+     * @param Medication $medication
+     * @param Condition $condition
+     * @return \Illuminate\Http\Response
+     */
     public function destroyCondition(Medication $medication, Condition $condition)
     {
         $this->medicationService->unlinkCondition($medication, $condition->id);
@@ -109,6 +153,13 @@ class MedicationsController extends Controller
         ]);
     }
 
+    /**
+     * Links an allergy to a medication
+     *
+     * @param Medication $medication
+     * @param Allergy $allergy
+     * @return \Illuminate\Http\Response
+     */
     public function storeAllergy(Medication $medication, Allergy $allergy)
     {
         $this->medicationService->linkAllergy($medication, $allergy->id);
@@ -117,6 +168,13 @@ class MedicationsController extends Controller
         ]);
     }
 
+    /**
+     * Unlinks an allergy from a medication
+     *
+     * @param Medication $medication
+     * @param Allergy $allergy
+     * @return \Illuminate\Http\Response
+     */
     public function destroyAllergy(Medication $medication, Allergy $allergy)
     {
         $this->medicationService->unlinkAllergy($medication, $allergy->id);
@@ -125,6 +183,13 @@ class MedicationsController extends Controller
         ]);
     }
 
+    /**
+     * Creates an incompatibility between two medications
+     *
+     * @param Medication $medication
+     * @param Medication $incompatibleWith
+     * @return \Illuminate\Http\Response
+     */
     public function storeIncompatibility(Medication $medication, Medication $incompatibleWith)
     {
         $this->medicationService->linkIncompatibility($medication, $incompatibleWith);
@@ -133,6 +198,13 @@ class MedicationsController extends Controller
         ]);
     }
 
+    /**
+     * Removes an incompatibility between two medications
+     *
+     * @param Medication $medication
+     * @param Medication $incompatibleWith
+     * @return \Illuminate\Http\Response
+     */
     public function destroyIncompatibility(Medication $medication, Medication $incompatibleWith)
     {
         $this->medicationService->unlinkIncompatibility($medication, $incompatibleWith);

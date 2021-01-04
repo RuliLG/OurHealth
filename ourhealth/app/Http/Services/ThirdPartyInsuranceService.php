@@ -8,9 +8,6 @@ use Symfony\Component\Routing\Exception\InvalidParameterException;
 
 class ThirdPartyInsuranceService
 {
-    /**
-     * Returns a list of all the third party insurances available, ordered by name
-     */
     public function getAll()
     {
         return ThirdPartyInsurance::orderBy('name', 'ASC')->get();

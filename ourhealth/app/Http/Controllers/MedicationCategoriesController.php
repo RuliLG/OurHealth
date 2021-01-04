@@ -15,7 +15,7 @@ class MedicationCategoriesController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Display a list of the available categories
      *
      * @return \Illuminate\Http\Response
      */
@@ -26,6 +26,11 @@ class MedicationCategoriesController extends Controller
         ]);
     }
 
+    /**
+     * Display a list of the available categories with medication information filled
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function full()
     {
         return response()->json([
@@ -34,7 +39,7 @@ class MedicationCategoriesController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a new medication category
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -61,7 +66,7 @@ class MedicationCategoriesController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified category
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -74,7 +79,7 @@ class MedicationCategoriesController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified category
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -102,7 +107,7 @@ class MedicationCategoriesController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified category
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

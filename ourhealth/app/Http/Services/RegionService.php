@@ -6,9 +6,6 @@ use App\Models\Region;
 
 class RegionService
 {
-    /**
-     * Returns a list of all the regions ordered by name
-     */
     public function getAll($country = null)
     {
         $regions = Region::orderBy('name', 'ASC');
@@ -19,24 +16,12 @@ class RegionService
         return $regions->get();
     }
 
-    /**
-     * Gets a region from its identifier
-     *
-     * @param number $id
-     * @return Region
-     */
     public function get($id, $fail = false)
     {
         $region = Region::with('hospitals.departments');
         return $fail ? $region->findOrFail($id) : $region->find($id);
     }
 
-    /**
-     * Gets a region from its name and country
-     *
-     * @param number $id
-     * @return Region
-     */
     public function getFromName($name, $country, $fail = false)
     {
         $region = Region::with('hospitals.departments')

@@ -13,6 +13,7 @@ class CountriesController extends Controller
 
     /**
      * Returns a list of all the countries ordered by name
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -23,6 +24,7 @@ class CountriesController extends Controller
 
     /**
      * Gets a country from its iso code
+     * @return \Illuminate\Http\Response
      */
     public function get($isoCode)
     {

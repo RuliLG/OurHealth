@@ -8,11 +8,6 @@ use Symfony\Component\Routing\Exception\InvalidParameterException;
 
 class HospitalDepartmentService
 {
-    /**
-     * Returns a list of all the hospitals ordered by name
-     *
-     * @return array<HospitalDepartment>
-     */
     public function getAll($options = [])
     {
         $validator = Validator::make($options, [
@@ -26,11 +21,6 @@ class HospitalDepartmentService
         return HospitalDepartment::orderBy('name', 'ASC')->get();
     }
 
-    /**
-     * Creates a hospital department
-     *
-     * @return HospitalDepartment
-     */
     public function store($data)
     {
         $validator = Validator::make($data, [
@@ -49,11 +39,6 @@ class HospitalDepartmentService
         return $department;
     }
 
-    /**
-     * Updates a hospital department
-     *
-     * @return HospitalDepartment
-     */
     public function update($id, $data)
     {
         $validator = Validator::make($data, [
@@ -76,13 +61,6 @@ class HospitalDepartmentService
         return $department;
     }
 
-    /**
-     * Removes a hospital department from its id
-     *
-     * @param string $id
-     * @param boolean $fail if the function should abort with a 404 code if the hospital is not found
-     * @return void
-     */
     public function destroy($id, $fail = false)
     {
         if ($fail) {

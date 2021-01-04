@@ -14,8 +14,9 @@ class HospitalsController extends Controller
         $this->hospitalService = $hospitalService;
     }
     /**
-     * Display a listing of the resource.
+     * Display a list of the available hospitals, filtered by country or region
      *
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
@@ -41,7 +42,7 @@ class HospitalsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a new hospital inside a region
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -69,7 +70,7 @@ class HospitalsController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified hospital.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -80,7 +81,7 @@ class HospitalsController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified hospital
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -109,7 +110,7 @@ class HospitalsController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified hospital
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

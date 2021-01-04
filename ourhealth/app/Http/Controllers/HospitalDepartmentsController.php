@@ -15,7 +15,7 @@ class HospitalDepartmentsController extends Controller
         $this->departmentService = $departmentService;
     }
     /**
-     * Display a listing of the resource.
+     * Display a list of the departments from a certain hospital
      *
      * @return \Illuminate\Http\Response
      */
@@ -37,8 +37,9 @@ class HospitalDepartmentsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a new department inside a hospital
      *
+     * @param int $hospitalId
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -65,9 +66,10 @@ class HospitalDepartmentsController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified hospital department
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  int  $hospitalId
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -98,7 +100,7 @@ class HospitalDepartmentsController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified hospital department
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

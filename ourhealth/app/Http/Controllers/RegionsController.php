@@ -12,6 +12,11 @@ class RegionsController extends Controller
         $this->regionService = $regionService;
     }
 
+    /**
+     * Gets a list of the available regions
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         return response()->json([
@@ -19,6 +24,12 @@ class RegionsController extends Controller
         ]);
     }
 
+    /**
+     * Gets a list of the regions inside a country
+     *
+     * @param string $isoCode
+     * @return \Illuminate\Http\Response
+     */
     public function countryIndex($isoCode)
     {
         return response()->json([
@@ -26,6 +37,12 @@ class RegionsController extends Controller
         ]);
     }
 
+    /**
+     * Gets a single region information
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
     public function get($id)
     {
         return response()->json($this->regionService->get($id, true));

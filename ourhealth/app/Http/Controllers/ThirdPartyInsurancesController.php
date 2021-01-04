@@ -14,7 +14,7 @@ class ThirdPartyInsurancesController extends Controller
         $this->thirdPartyInsuranceService = $thirdPartyInsuranceService;
     }
     /**
-     * Display a listing of the resource.
+     * Display a list of the third party insurances
      *
      * @return \Illuminate\Http\Response
      */
@@ -26,7 +26,7 @@ class ThirdPartyInsurancesController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a new third party insurance
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -53,7 +53,7 @@ class ThirdPartyInsurancesController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified third party insurance
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -81,7 +81,7 @@ class ThirdPartyInsurancesController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified third party insurance
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

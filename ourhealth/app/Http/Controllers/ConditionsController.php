@@ -14,7 +14,7 @@ class ConditionsController extends Controller
         $this->conditionService = $conditionService;
     }
     /**
-     * Display a listing of the resource.
+     * Display a list of the available medical conditions
      *
      * @return \Illuminate\Http\Response
      */
@@ -26,7 +26,7 @@ class ConditionsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a new medical condition in the database
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -55,7 +55,7 @@ class ConditionsController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified medical condition.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -68,7 +68,7 @@ class ConditionsController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified medical condition
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -98,7 +98,7 @@ class ConditionsController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified medical condition
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
