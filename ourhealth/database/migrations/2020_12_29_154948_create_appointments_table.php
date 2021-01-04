@@ -19,7 +19,7 @@ class CreateAppointmentsTable extends Migration
             $table->foreignId('hospital_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('hospital_department_id')->nullable()->constrained()->nullOnDelete();
             $table->dateTime('starts_at')->nullable()->index();
-            $table->enum('status', ['pending', 'confirmed', 'cancelled', 'success'])->default('pending');
+            $table->enum('status', ['pending', 'confirmed', 'cancelled', 'success'])->default('pending')->index();
             $table->mediumText('comments')->nullable();
             $table->timestamps();
         });

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AllergiesController;
+use App\Http\Controllers\AppointmentsController;
 use App\Http\Controllers\ConditionsController;
 use App\Http\Controllers\CountriesController;
 use App\Http\Controllers\FilesController;
@@ -45,10 +46,12 @@ Route::prefix('v1')->group(function() {
         Route::patch('/hospitals/{id}', [HospitalsController::class, 'update'])->middleware('superadmin');
         Route::delete('/hospitals/{id}', [HospitalsController::class, 'destroy'])->middleware('superadmin');
 
+        Route::get('/hospitals/{hospital}/appointments', [AppointmentsController::class, 'fromHospital']);
         Route::get('/hospitals/{hospitalId}/departments', [HospitalDepartmentsController::class, 'index']);
         Route::post('/hospitals/{hospitalId}/departments', [HospitalDepartmentsController::class, 'store'])->middleware('hospital_admin');
         Route::patch('/hospitals/{hospitalId}/departments/{id}', [HospitalDepartmentsController::class, 'update'])->middleware('hospital_admin');
         Route::delete('/hospitals/{hospitalId}/departments/{id}', [HospitalDepartmentsController::class, 'destroy'])->middleware('hospital_admin');
+        Route::get('/hospitals/{hospitalId}/departments/{id}/appointments', [AppointmentsController::class, 'fromHospitalDepartment']);
 
         Route::get('/third-party-insurances', [ThirdPartyInsurancesController::class, 'index']);
         Route::post('/third-party-insurances', [ThirdPartyInsurancesController::class, 'store'])->middleware('superadmin');
@@ -104,6 +107,7 @@ Route::prefix('v1')->group(function() {
         Route::get('/patients', [PatientsController::class, 'index']);
         Route::get('/patients/{id}', [PatientsController::class, 'show']);
         Route::get('/patients/{patient}/files', [FilesController::class, 'fromPatient']);
+        Route::get('/patients/{patient}/appointments', [AppointmentsController::class, 'fromPatient']);
         Route::get('/patients/{patient}/measurements', [MeasurementsController::class, 'index']);
         Route::get('/patients/{patient}/measurements/{batchId}', [MeasurementsController::class, 'indexFromBatchId']);
         Route::get('/patients/{isoCode}/{id}', [PatientsController::class, 'showByCountryId']);
@@ -113,5 +117,11 @@ Route::prefix('v1')->group(function() {
 
         Route::post('/measurements', [MeasurementsController::class, 'store']);
         Route::delete('/measurements/{id}', [MeasurementsController::class, 'destroy']);
+
+        Route::get('/appointments', [AppointmentsController::class, 'index']);
+        Route::get('/appointments/{id}', [AppointmentsController::class, 'show']);
+        Route::post('/appointments', [AppointmentsController::class, 'store']);
+        Route::patch('/appointments/{id}', [AppointmentsController::class, 'update']);
+        Route::delete('/appointments/{id}', [AppointmentsController::class, 'destroy']);
     });
 });
