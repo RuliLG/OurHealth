@@ -20,7 +20,7 @@ Although this problem may be present in other provinces and countries (for examp
 ### Outdated system
 First of all, the application was created almost 20 years ago and it has been updated a few times just to introduce some workflow improvements. This is a current screenshot of the application:
 
-![](https://ourhealth.raullgdev.es/assets/drago.jpg?ver=1)
+![](https://ourhealth.raullgdev.es/assets/drago.jpg?ver=3)
 
 Searching through the local newspapers, we can read a few articles about El Drago being unusable:
 
