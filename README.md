@@ -166,3 +166,6 @@ We've also prepared an [Insomnia Core](https://insomnia.rest/download/) Workspac
 
 You can download it by [clicking here](https://ourhealth.raullgdev.es/assets/OurHealth-20200104.json)
 
+### Video
+I've also recorded a 2min video explaining this problem and how this API would help to solve it. You can download the video by [clicking here](https://ourhealth.raullgdev.es/storage/program_description.mov)
+
